@@ -7,7 +7,12 @@ def fetch_key():
     return api_key
 api_base='https://free.currconv.com'
 currency_list='/api/v7/currencies?apiKey='
-api_key=fetch_key()
+flag=input('Do you have API key in Database (Y/N)?')
+if(flag=='Y'):
+    api_key=fetch_key()
+else:
+    api_key=input('Enter the API Key: ')
+    database_utils.save_key(api_key)
 url_currency_supported=api_base+currency_list+api_key
 print('hitting',url_currency_supported)
 response=urllib.request.urlopen(url_currency_supported)
