@@ -1,8 +1,13 @@
-import urllib
+import urllib.request
+import database_utils
 import json
+def fetch_key():
+    #Method used to return the API Key
+    api_key=database_utils.fetch_key()
+    return api_key
 api_base='https://free.currconv.com'
 currency_list='/api/v7/currencies?apiKey='
-api_key='13e965300e13c50227b9'
+api_key=fetch_key()
 url_currency_supported=api_base+currency_list+api_key
 print('hitting',url_currency_supported)
 response=urllib.request.urlopen(url_currency_supported)
